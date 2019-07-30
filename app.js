@@ -1,5 +1,5 @@
 // stores info about how to display the page
-const state = {
+const settings = {
   // select a category to filter by: 'first_name', 'last_name', 'state', etc
   filterBy: '',
   // include a search term for the filter by category: 'Tillie', 'Axworthy', 'IA', etc
@@ -22,7 +22,7 @@ const addresses = [
   {"id":10,"first_name":"Jerrilee","last_name":"Wherry","email":"jwherry9@posterous.com","street_address":"4 Eagle Crest Road","city":"Jackson","state":"TN","zip_code":"38308"},
 ]
 
-// filters the address list based on the settings we include in `state` above
+// filters the address list based on the settings above
 // this changes the size of the list - we only display addresses that match the search criteria
 function filterAddressList(filterBy, filterFor, list) {
   // if we don't include a setting for filterBy, include all addresses in the list
@@ -39,7 +39,7 @@ function filterAddressList(filterBy, filterFor, list) {
   })
 }
 
-// sorts the list alphabetically by the category we include in `state` above
+// sorts the list alphabetically by the category we include in `settings` above
 function sortAddressList(sortBy, list) {
   return list.sort((a, b) => {
     if (a[sortBy] < b[sortBy]) {
@@ -53,11 +53,11 @@ function sortAddressList(sortBy, list) {
 }
 
 // creates a string of HTML elements for the address list
-function generateHTML(state, list) {
+function generateHTML(settings, list) {
   // filter the address list
-  const filteredList = filterAddressList(state.filterBy, state.filterFor, list);
+  const filteredList = filterAddressList(settings.filterBy, settings.filterFor, list);
   // sort the filtered list
-  const sortedList = sortAddressList(state.sortBy, filteredList);
+  const sortedList = sortAddressList(settings.sortBy, filteredList);
 
   // create HTML elements for each address and add them together into one string
   const htmlString = sortedList.map(address => {
@@ -75,4 +75,4 @@ function generateHTML(state, list) {
 }
 
 // insert the HTML elements for each address into the `<ul>` element on the page
-document.querySelector('.address-list').innerHTML = generateHTML(state, addresses);
+document.querySelector('.address-list').innerHTML = generateHTML(settings, addresses);
