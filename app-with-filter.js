@@ -14,12 +14,12 @@ const addresses = [
 
 // stores info about how to display the page
 const settings = {
+  // select a category to sort by (all sorts are alphabetical) 
+  sortBy: 'last_name',
   // select a category to filter by: 'first_name', 'last_name', 'state', etc
   filterBy: '',
   // include a search term for the filter by category: 'Tillie', 'Axworthy', 'IA', etc
   filterFor: '',
-  // select a category to sort by (all sorts are alphabetical) 
-  sortBy: 'last_name',
 }
 
 // filters the address list based on the settings above
