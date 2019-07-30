@@ -12,11 +12,55 @@ const addresses = [
   {"id":10,"first_name":"Jerrilee","last_name":"Wherry","email":"jwherry9@posterous.com","street_address":"4 Eagle Crest Road","city":"Jackson","state":"TN","zip_code":"38308"},
 ]
 
+// stores info about how to display the page
+const settings = {
+  // select a category to filter by: 'first_name', 'last_name', 'state', etc
+  filterBy: '',
+  // include a search term for the filter by category: 'Tillie', 'Axworthy', 'IA', etc
+  filterFor: '',
+  // select a category to sort by (all sorts are alphabetical) 
+  sortBy: 'last_name',
+}
+
+// filters the address list based on the settings above
+// this changes the size of the list - we only display addresses that match the search criteria
+function filterAddressList(filterBy, filterFor, list) {
+  // if we don't include a setting for filterBy, include all addresses in the list
+  if (filterBy === '') {
+    return list;
+  }
+  return list.filter(address => {
+    // if the filterBy category isn't real, don't display any addresses
+    if (address[filterBy] === undefined) {
+      return false;
+    }
+    // create a list of addresses that match our search criteria
+    return address[filterBy].toLowerCase().includes(filterFor.toLowerCase())
+  })
+}
+
+// sorts the list alphabetically by the category we include in `settings` above
+function sortAddressList(sortBy, list) {
+  return list.sort((a, b) => {
+    if (a[sortBy] < b[sortBy]) {
+      return -1;
+    }
+    if (a[sortBy] > b[sortBy]) {
+      return 1;
+    }
+    return 0;
+  })
+}
+
 // creates a string of HTML elements for the address list
-function generateHTML(list) {
+function generateHTML(settings, list) {
+  // filter the address list
+  const filteredList = filterAddressList(settings.filterBy, settings.filterFor, list);
+  // sort the filtered list
+  const sortedList = sortAddressList(settings.sortBy, filteredList);
 
   // create HTML elements for each address and add them together into one string
-  const htmlString = list.map(address => {
+  const htmlString = sortedList.map(address => {
     return `
       <li class="address">
         <h2 class="full-name">${address.first_name} ${address.last_name}</h2>
@@ -31,4 +75,4 @@ function generateHTML(list) {
 }
 
 // insert the HTML elements for each address into the `<ul>` element on the page
-document.querySelector('.address-list').innerHTML = generateHTML(addresses);
+document.querySelector('.address-list').innerHTML = generateHTML(settings, addresses);
