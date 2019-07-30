@@ -35,7 +35,7 @@ function filterAddressList(filterBy, filterFor, list) {
       return false;
     }
     // create a list of addresses that match our search criteria
-    return address[filterBy].includes(filterFor)
+    return address[filterBy].toLowerCase().includes(filterFor.toLowerCase())
   })
 }
 
