@@ -1,13 +1,3 @@
-// stores info about how to display the page
-const settings = {
-  // select a category to filter by: 'first_name', 'last_name', 'state', etc
-  filterBy: '',
-  // include a search term for the filter by category: 'Tillie', 'Axworthy', 'IA', etc
-  filterFor: '',
-  // select a category to sort by (all sorts are alphabetical) 
-  sortBy: 'last_name',
-}
-
 // stores a list of addresses
 const addresses = [
   {"id":1,"first_name":"Tillie","last_name":"Axworthy","email":"taxworthy0@tinyurl.com","street_address":"32 Sauthoff Junction","city":"Des Moines","state":"IA","zip_code":"50981"},
@@ -21,6 +11,16 @@ const addresses = [
   {"id":9,"first_name":"Angeli","last_name":"Braney","email":"abraney8@jigsy.com","street_address":"6428 Hallows Terrace","city":"Woburn","state":"MA","zip_code":"01813"},
   {"id":10,"first_name":"Jerrilee","last_name":"Wherry","email":"jwherry9@posterous.com","street_address":"4 Eagle Crest Road","city":"Jackson","state":"TN","zip_code":"38308"},
 ]
+
+// stores info about how to display the page
+const settings = {
+  // select a category to filter by: 'first_name', 'last_name', 'state', etc
+  filterBy: '',
+  // include a search term for the filter by category: 'Tillie', 'Axworthy', 'IA', etc
+  filterFor: '',
+  // select a category to sort by (all sorts are alphabetical) 
+  sortBy: 'last_name',
+}
 
 // filters the address list based on the settings above
 // this changes the size of the list - we only display addresses that match the search criteria
